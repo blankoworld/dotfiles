@@ -1,0 +1,9 @@
+[user]
+	name = Olivier DOSSMANN
+	email = olivier+git@dossmann.net
+[alias]
+	st = status
+[color]
+	ui = true
+[push]
+	default = matching

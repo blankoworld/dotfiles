@@ -23,8 +23,20 @@ Sont nécessaires :
   * tmux
   * elinks
   * openbox
+  * git-core
   * redshift
   * xscreensaver
+
+## À Configurer (avec un script bash ou autre)
+
+  * .zshrc
+  * .vimrc
+  * .xinitrc
+  * .Xdefault
+  * .gitconfig
+  * .tmux.conf
+  * dossier bin
+  * environnement openbox
 
 ## Liens utiles
 
