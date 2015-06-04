@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+LANG=fr_FR.UTF-8 date +'%R %a, le %d/%m/%Y'
