@@ -224,7 +224,7 @@
     <!-- Take a screenshot of the current window with gnome-screenshot when Alt+Print are pressed -->
     <keybind key="A-Print">
       <action name="Execute">
-        <command>gnome-screenshot -w</command>
+        <command>sh -c "import -window root ~/Images/$(date '+%Y%m%d-%H%M%S').png"</command>
       </action>
     </keybind>
     <!-- Keybindings for window switching -->
