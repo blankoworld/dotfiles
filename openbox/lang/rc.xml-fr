@@ -221,10 +221,10 @@
         <menu>client-list-combined-menu</menu>
       </action>
     </keybind>
-    <!-- Take a screenshot of the current window with gnome-screenshot when Alt+Print are pressed -->
-    <keybind key="A-Print">
+    <!-- Prise de vue totale dans ~/Images quand on utilise la touche Impr. Écran -->
+    <keybind key="Print">
       <action name="Execute">
-        <command>sh -c "import -window root ~/Images/$(date '+%Y%m%d-%H%M%S').png"</command>
+        <command>sh -c "scrot '%Y%m%d-%H%M%S.png' -e 'mv $f ~/Images/'"</command>
       </action>
     </keybind>
     <!-- Keybindings for window switching -->
