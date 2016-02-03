@@ -22,7 +22,7 @@ Sont nécessaires :
   * most
   * tmux
   * elinks
-  * openbox
+  * openbox (ou i3)
   * git-core
   * redshift
   * xscreensaver
