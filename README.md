@@ -22,10 +22,11 @@ Sont nécessaires :
   * most
   * tmux
   * elinks
-  * openbox (ou i3)
+  * openbox (ou i3-wm avec i3wm-status et dmenu)
   * git-core
   * redshift
   * xscreensaver
+  * dejavu
 
 ## À Configurer (avec un script bash ou autre)
 
