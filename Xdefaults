@@ -9,7 +9,7 @@ urxvt*depth: 32
 urxvt*background: rgba:0000/0000/0200/e700
 URxvt*geometry: 95x30
 urxvt.foreground: #ffffff
-urxvt.font: xft:Dejavu Sans Mono:pixelsize=14:antialias=true
+urxvt.font: xft:DejaVu Sans Mono:pixelsize=14:antialias=true
 urxvt.modifier:alt
 urxvt.matcher.button: 1
 urxvt.perl-ext-common: default,matcher
@@ -47,5 +47,5 @@ urxvt.color15: #ffffff
 XTerm*background:   black
 XTerm*foreground:   white
 XTerm*cursorColor:  grey
-XTerm*faceName:     Monospace
+XTerm*faceName:     DejaVu Sans Mono
 XTerm*faceSize:     12

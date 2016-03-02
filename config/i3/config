@@ -5,7 +5,7 @@
 # this file and re-run i3-config-wizard(1).
 #
 #exec --no-startup-id xsetroot -solid "#33333"
-exec --no-startup-id feh --bg-fill /home/olivier/Pictures/Abstract-Cool-Backgrounds.jpg
+exec --no-startup-id feh --bg-fill $HOME/.config/i3/A-Spiral-to-the-Unknown.jpg
 # i3 config file (v4)
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
@@ -31,14 +31,13 @@ font pango:monospace 8
 floating_modifier $mod
 
 # start a terminal
-#bindsym $mod+Return exec i3-sensible-terminal
-bindsym $mod+Return exec sakura
+bindsym $mod+Return exec i3-sensible-terminal
 
 # kill focused window
 bindsym $mod+Shift+A kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec gmrun
+bindsym $mod+d exec dmenu_run
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
@@ -55,6 +54,8 @@ bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
+bindsym Mod1+Tab focus right
+bindsym Mod1+Shift+Tab focus left
 
 # move focused window
 bindsym $mod+Shift+j move left
@@ -163,9 +164,14 @@ bar {
 
 ##### MISCELLANEOUS CONFIGURATION
 
+# Pulse Audio controls
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 0 +5% #increase sound volume
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume 0 -5% #decrease sound volume
+bindsym XF86AudioMute exec pactl set-sink-mute 0 toggle # mute sound
+
 # Eyes economy
 exec --no-startup-id redshift -l 48.666977:7.706748
 
 # Lock screen
-exec --no-startup-id xscreensaver
+#exec --no-startup-id xscreensaver
 bindsym $mod+l exec xscreensaver-command --lock

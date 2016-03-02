@@ -1,0 +1,8 @@
+[options]
+font = DejaVu Sans Mono 12
+#font = Monospace 9
+#font = Terminus (TTF) 8
+#font = Droid Sans Mono 8
+
+[colors]
+background = rgba(63, 63, 63, 0.8)
