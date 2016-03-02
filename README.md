@@ -26,6 +26,7 @@ Sont nécessaires :
   * git-core
   * redshift
   * xscreensaver
+  * ttf-dejavu
   * termite
 
 ## À Configurer (avec un script bash ou autre)
