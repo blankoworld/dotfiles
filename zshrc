@@ -13,14 +13,18 @@ fi
 ### INITIAL ZSHRC ###
 
 # Set up the prompt
-
-autoload -Uz promptinit
+autoload -Uz compinit promptinit vcs_info
+compinit # for Git completion
 promptinit
 #prompt adam1
 
+precmd_vcs_info() { vcs_info }
+precmd_functions+=( precmd_vcs_info )
+setopt prompt_subst
+
 typeset PROMPT="%F{white}%n %B%F{magenta}%(4~|...|)%3~%F{white} %# %b%f%k"
 # Ajoute le nom du chroot sur la droite
-typeset RPROMPT="${debian_chroot:+($debian_chroot) } %m" #%(1j.%j:.)%n@%m"
+typeset RPROMPT="\$vcs_info_msg_0_ ${debian_chroot:+($debian_chroot) } %m" #%(1j.%j:.)%n@%m"
 
 setopt histignorealldups sharehistory
 
