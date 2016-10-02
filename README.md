@@ -22,11 +22,12 @@ Sont nécessaires :
   * most
   * tmux
   * elinks
-  * openbox (ou i3-wm avec i3wm-status et dmenu)
+  * openbox OU i3wm
   * git-core
   * redshift
   * xscreensaver
-  * dejavu
+  * ttf-dejavu
+  * termite
 
 ## À Configurer (avec un script bash ou autre)
 
@@ -36,8 +37,10 @@ Sont nécessaires :
   * .Xdefault
   * .gitconfig
   * .tmux.conf
+  * .i3status.conf
   * dossier bin
-  * environnement openbox
+  * [optionnel] environnement openbox
+  * dossier .config
 
 ## Liens utiles
 

@@ -13,14 +13,18 @@ fi
 ### INITIAL ZSHRC ###
 
 # Set up the prompt
-
-autoload -Uz promptinit
+autoload -Uz compinit promptinit vcs_info
+compinit # for Git completion
 promptinit
 #prompt adam1
 
+precmd_vcs_info() { vcs_info }
+precmd_functions+=( precmd_vcs_info )
+setopt prompt_subst
+
 typeset PROMPT="%F{white}%n %B%F{magenta}%(4~|...|)%3~%F{white} %# %b%f%k"
 # Ajoute le nom du chroot sur la droite
-typeset RPROMPT="${debian_chroot:+($debian_chroot) } %m" #%(1j.%j:.)%n@%m"
+typeset RPROMPT="\$vcs_info_msg_0_ ${debian_chroot:+($debian_chroot) } %m" #%(1j.%j:.)%n@%m"
 
 setopt histignorealldups sharehistory
 
@@ -57,6 +61,70 @@ zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 ###### END OF INITIAL ZSHRC
 
 # Correspondance touches-fonction
+
+#### Solution 2
+####
+# Not all servers have terminfo for rxvt-256color.
+#if [ "${TERM}" = 'rxvt-256color' ] && ! [ -f '/usr/share/terminfo/r/rxvt-256color' ] && ! [ -f '/lib/terminfo/r/rxvt-256color' ] && ! [ -f "${HOME}/.terminfo/r/rxvt-256color" ]; then
+#  export TERM='rxvt-unicode'
+#fi
+#
+#if [ "${TERM}" = 'xterm-termite' ] && ! [ -f '/usr/share/terminfo/x/xterm-termite' ] && ! [ -f '/lib/terminfo/r/xterm-termite' ] && ! [ -f "${HOME}/.terminfo/r/xterm-termite" ]; then
+#  export TERM='xterm-256color'
+#fi
+#
+#case $TERM in
+#  rxvt*|xterm)
+#    bindkey "^[[7~" beginning-of-line #Home key
+#    bindkey "^[[8~" end-of-line #End key
+#    bindkey "^[[3~" delete-char #Del key
+#    bindkey "^[[A" history-beginning-search-backward #Up Arrow
+#    bindkey "^[[B" history-beginning-search-forward #Down Arrow
+#    bindkey "^[Oc" forward-word # control + right arrow
+#    bindkey "^[Od" backward-word # control + left arrow
+#    bindkey "^H" backward-kill-word # control + backspace
+#    bindkey "^[[3^" kill-word # control + delete
+#    ;;
+#
+#  xterm-termite|xterm-256color)
+#    bindkey "^[OH" beginning-of-line #Home key
+#    bindkey "^[OF" end-of-line #End key
+#    bindkey "^[[3~" delete-char #Del key
+#    bindkey "^[[A" history-beginning-search-backward #Up Arrow
+#    bindkey "^[[B" history-beginning-search-forward #Down Arrow
+#    bindkey "^[Oc" forward-word # control + right arrow
+#    bindkey "^[Od" backward-word # control + left arrow
+#    bindkey "^H" backward-kill-word # control + backspace
+#    bindkey "^[[3^" kill-word # control + delete
+#    ;;
+#
+#  linux)
+#    bindkey "^[[1~" beginning-of-line #Home key
+#    bindkey "^[[4~" end-of-line #End key
+#    bindkey "^[[3~" delete-char #Del key
+#    bindkey "^[[A" history-beginning-search-backward
+#    bindkey "^[[B" history-beginning-search-forward
+#    bindkey "^H" backward-delete-char
+#    ;;
+#
+#  screen|screen-*)
+#    bindkey "^[[1~" beginning-of-line #Home key
+#    bindkey "^[[4~" end-of-line #End key
+#    bindkey "^[[3~" delete-char #Del key
+#    bindkey "^[[A" history-beginning-search-backward #Up Arrow
+#    bindkey "^[[B" history-beginning-search-forward #Down Arrow
+#    bindkey "^[Oc" forward-word # control + right arrow
+#    bindkey "^[Od" backward-word # control + left arrow
+#    bindkey "^H" backward-kill-word # control + backspace
+#    bindkey "^[[3^" kill-word # control + delete
+#    ;;
+#esac
+#
+#####
+##### End of Solution 2
+
+#### Solution 1
+#### 
 # bindkey '^A' beginning-of-line # Home
 # bindkey '^E' end-of-line # End
 # bindkey '^D' delete-char # Del
@@ -66,6 +134,42 @@ zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 # bindkey "\e[2~" overwrite-mode # Insert
 # bindkey "\e[4~" end-of-line # End
 # bindkey "\e[1~" beginning-of-line # Home
+####
+#### End of Solution 1
+
+typeset -A key
+
+key[Home]=${terminfo[khome]}
+key[End]=${terminfo[kend]}
+key[Insert]=${terminfo[kich1]}
+key[Delete]=${terminfo[kdch1]}
+key[Up]=${terminfo[kcuu1]}
+key[Down]=${terminfo[kcud1]}
+key[Left]=${terminfo[kcub1]}
+key[Right]=${terminfo[kcuf1]}
+key[PageUp]=${terminfo[kpp]}
+key[PageDown]=${terminfo[knp]}
+
+# setup key accordingly
+[[ -n "${key[Home]}"    ]]  && bindkey  "${key[Home]}"    beginning-of-line
+[[ -n "${key[End]}"     ]]  && bindkey  "${key[End]}"     end-of-line
+[[ -n "${key[Insert]}"  ]]  && bindkey  "${key[Insert]}"  overwrite-mode
+[[ -n "${key[Delete]}"  ]]  && bindkey  "${key[Delete]}"  delete-char
+[[ -n "${key[Up]}"      ]]  && bindkey  "${key[Up]}"      up-line-or-history
+[[ -n "${key[Down]}"    ]]  && bindkey  "${key[Down]}"    down-line-or-history
+[[ -n "${key[Left]}"    ]]  && bindkey  "${key[Left]}"    backward-char
+[[ -n "${key[Right]}"   ]]  && bindkey  "${key[Right]}"   forward-char
+
+# Finally, make sure the terminal is in application mode, when zle is
+# active. Only then are the values from $terminfo valid.
+function zle-line-init () {
+  echoti smkx
+}
+function zle-line-finish () {
+  echoti rmkx
+}
+zle -N zle-line-init
+zle -N zle-line-finish
 
 #Alias
 ## Permet la coloration du retour d'un `ls`
@@ -118,3 +222,33 @@ alias -s txt=$EDITOR
 alias -s PKGBUILD=$EDITOR
 
 ### END PROPRES à ZSH
+
+# ssh-agent-procure.bash
+# # v0.6.4
+# # ensures that all shells sourcing this file in profile/rc scripts use the same ssh-agent.
+# # copyright me, now; licensed under the DWTFYWT license.
+#
+mkdir -p "$HOME/etc/ssh";
+
+function ssh-procure-launch-agent {
+  eval `ssh-agent -s -a ~/etc/ssh/ssh-agent-socket`;
+  ssh-add;
+}
+
+if [ ! $SSH_AGENT_PID ]; then
+  if [ -e ~/etc/ssh/ssh-agent-socket ] ; then
+    SSH_AGENT_PID=`ps -fC ssh-agent |grep 'etc/ssh/ssh-agent-socket' |sed -r 's/^\S+\s+(\S+).*$/\1/'`; 
+    if [[ $SSH_AGENT_PID =~ [0-9]+ ]]; then
+      # in this case the agent has already been launched and we are just attaching to it. 
+      ##++  It should check that this pid is actually active & belongs to an ssh instance
+      export SSH_AGENT_PID;
+      SSH_AUTH_SOCK=~/etc/ssh/ssh-agent-socket; export SSH_AUTH_SOCK;
+    else
+      # in this case there is no agent running, so the socket file is left over from a graceless agent termination.
+      rm ~/etc/ssh/ssh-agent-socket;
+      ssh-procure-launch-agent;
+    fi;
+  else
+    ssh-procure-launch-agent;
+  fi;
+fi;

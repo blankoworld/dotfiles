@@ -1,0 +1,4 @@
+  * ajouter configuration Atom editor
+  * Ajouter Fira Code (Cf. https://github.com/tonsky/FiraCode)
+  * Ajouter script d'installation des ttf Fira Code dans ~/.local/share/fonts + fc-cache -f
+  * Configurer Atom pour utiliser Fira Code
