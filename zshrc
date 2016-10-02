@@ -65,61 +65,61 @@ zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 #### Solution 2
 ####
 # Not all servers have terminfo for rxvt-256color.
-#if [ "${TERM}" = 'rxvt-256color' ] && ! [ -f '/usr/share/terminfo/r/rxvt-256color' ] && ! [ -f '/lib/terminfo/r/rxvt-256color' ] && ! [ -f "${HOME}/.terminfo/r/rxvt-256color" ]; then
-#  export TERM='rxvt-unicode'
-#fi
-#
-#if [ "${TERM}" = 'xterm-termite' ] && ! [ -f '/usr/share/terminfo/x/xterm-termite' ] && ! [ -f '/lib/terminfo/r/xterm-termite' ] && ! [ -f "${HOME}/.terminfo/r/xterm-termite" ]; then
-#  export TERM='xterm-256color'
-#fi
-#
-#case $TERM in
-#  rxvt*|xterm)
-#    bindkey "^[[7~" beginning-of-line #Home key
-#    bindkey "^[[8~" end-of-line #End key
-#    bindkey "^[[3~" delete-char #Del key
-#    bindkey "^[[A" history-beginning-search-backward #Up Arrow
-#    bindkey "^[[B" history-beginning-search-forward #Down Arrow
-#    bindkey "^[Oc" forward-word # control + right arrow
-#    bindkey "^[Od" backward-word # control + left arrow
-#    bindkey "^H" backward-kill-word # control + backspace
-#    bindkey "^[[3^" kill-word # control + delete
-#    ;;
-#
-#  xterm-termite|xterm-256color)
-#    bindkey "^[OH" beginning-of-line #Home key
-#    bindkey "^[OF" end-of-line #End key
-#    bindkey "^[[3~" delete-char #Del key
-#    bindkey "^[[A" history-beginning-search-backward #Up Arrow
-#    bindkey "^[[B" history-beginning-search-forward #Down Arrow
-#    bindkey "^[Oc" forward-word # control + right arrow
-#    bindkey "^[Od" backward-word # control + left arrow
-#    bindkey "^H" backward-kill-word # control + backspace
-#    bindkey "^[[3^" kill-word # control + delete
-#    ;;
-#
-#  linux)
-#    bindkey "^[[1~" beginning-of-line #Home key
-#    bindkey "^[[4~" end-of-line #End key
-#    bindkey "^[[3~" delete-char #Del key
-#    bindkey "^[[A" history-beginning-search-backward
-#    bindkey "^[[B" history-beginning-search-forward
-#    bindkey "^H" backward-delete-char
-#    ;;
-#
-#  screen|screen-*)
-#    bindkey "^[[1~" beginning-of-line #Home key
-#    bindkey "^[[4~" end-of-line #End key
-#    bindkey "^[[3~" delete-char #Del key
-#    bindkey "^[[A" history-beginning-search-backward #Up Arrow
-#    bindkey "^[[B" history-beginning-search-forward #Down Arrow
-#    bindkey "^[Oc" forward-word # control + right arrow
-#    bindkey "^[Od" backward-word # control + left arrow
-#    bindkey "^H" backward-kill-word # control + backspace
-#    bindkey "^[[3^" kill-word # control + delete
-#    ;;
-#esac
-#
+if [ "${TERM}" = 'rxvt-256color' ] && ! [ -f '/usr/share/terminfo/r/rxvt-256color' ] && ! [ -f '/lib/terminfo/r/rxvt-256color' ] && ! [ -f "${HOME}/.terminfo/r/rxvt-256color" ]; then
+  export TERM='rxvt-unicode'
+fi
+
+if [ "${TERM}" = 'xterm-termite' ] && ! [ -f '/usr/share/terminfo/x/xterm-termite' ] && ! [ -f '/lib/terminfo/r/xterm-termite' ] && ! [ -f "${HOME}/.terminfo/r/xterm-termite" ]; then
+  export TERM='xterm-256color'
+fi
+
+case $TERM in
+  rxvt*|xterm)
+    bindkey "^[[7~" beginning-of-line #Home key
+    bindkey "^[[8~" end-of-line #End key
+    bindkey "^[[3~" delete-char #Del key
+    bindkey "^[[A" history-beginning-search-backward #Up Arrow
+    bindkey "^[[B" history-beginning-search-forward #Down Arrow
+    bindkey "^[Oc" forward-word # control + right arrow
+    bindkey "^[Od" backward-word # control + left arrow
+    bindkey "^H" backward-kill-word # control + backspace
+    bindkey "^[[3^" kill-word # control + delete
+    ;;
+
+  xterm-termite|xterm-256color)
+    bindkey "^[OH" beginning-of-line #Home key
+    bindkey "^[OF" end-of-line #End key
+    bindkey "^[[3~" delete-char #Del key
+    bindkey "^[[A" history-beginning-search-backward #Up Arrow
+    bindkey "^[[B" history-beginning-search-forward #Down Arrow
+    bindkey "^[Oc" forward-word # control + right arrow
+    bindkey "^[Od" backward-word # control + left arrow
+    bindkey "^H" backward-kill-word # control + backspace
+    bindkey "^[[3^" kill-word # control + delete
+    ;;
+
+  linux)
+    bindkey "^[[1~" beginning-of-line #Home key
+    bindkey "^[[4~" end-of-line #End key
+    bindkey "^[[3~" delete-char #Del key
+    bindkey "^[[A" history-beginning-search-backward
+    bindkey "^[[B" history-beginning-search-forward
+    bindkey "^H" backward-delete-char
+    ;;
+
+  screen|screen-*)
+    bindkey "^[[1~" beginning-of-line #Home key
+    bindkey "^[[4~" end-of-line #End key
+    bindkey "^[[3~" delete-char #Del key
+    bindkey "^[[A" history-beginning-search-backward #Up Arrow
+    bindkey "^[[B" history-beginning-search-forward #Down Arrow
+    bindkey "^[Oc" forward-word # control + right arrow
+    bindkey "^[Od" backward-word # control + left arrow
+    bindkey "^H" backward-kill-word # control + backspace
+    bindkey "^[[3^" kill-word # control + delete
+    ;;
+esac
+
 #####
 ##### End of Solution 2
 
@@ -137,39 +137,43 @@ zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 ####
 #### End of Solution 1
 
-typeset -A key
-
-key[Home]=${terminfo[khome]}
-key[End]=${terminfo[kend]}
-key[Insert]=${terminfo[kich1]}
-key[Delete]=${terminfo[kdch1]}
-key[Up]=${terminfo[kcuu1]}
-key[Down]=${terminfo[kcud1]}
-key[Left]=${terminfo[kcub1]}
-key[Right]=${terminfo[kcuf1]}
-key[PageUp]=${terminfo[kpp]}
-key[PageDown]=${terminfo[knp]}
-
-# setup key accordingly
-[[ -n "${key[Home]}"    ]]  && bindkey  "${key[Home]}"    beginning-of-line
-[[ -n "${key[End]}"     ]]  && bindkey  "${key[End]}"     end-of-line
-[[ -n "${key[Insert]}"  ]]  && bindkey  "${key[Insert]}"  overwrite-mode
-[[ -n "${key[Delete]}"  ]]  && bindkey  "${key[Delete]}"  delete-char
-[[ -n "${key[Up]}"      ]]  && bindkey  "${key[Up]}"      up-line-or-history
-[[ -n "${key[Down]}"    ]]  && bindkey  "${key[Down]}"    down-line-or-history
-[[ -n "${key[Left]}"    ]]  && bindkey  "${key[Left]}"    backward-char
-[[ -n "${key[Right]}"   ]]  && bindkey  "${key[Right]}"   forward-char
-
-# Finally, make sure the terminal is in application mode, when zle is
-# active. Only then are the values from $terminfo valid.
-function zle-line-init () {
-  echoti smkx
-}
-function zle-line-finish () {
-  echoti rmkx
-}
-zle -N zle-line-init
-zle -N zle-line-finish
+#### Solution 3
+####
+#typeset -A key
+#
+#key[Home]=${terminfo[khome]}
+#key[End]=${terminfo[kend]}
+#key[Insert]=${terminfo[kich1]}
+#key[Delete]=${terminfo[kdch1]}
+#key[Up]=${terminfo[kcuu1]}
+#key[Down]=${terminfo[kcud1]}
+#key[Left]=${terminfo[kcub1]}
+#key[Right]=${terminfo[kcuf1]}
+#key[PageUp]=${terminfo[kpp]}
+#key[PageDown]=${terminfo[knp]}
+#
+## setup key accordingly
+#[[ -n "${key[Home]}"    ]]  && bindkey  "${key[Home]}"    beginning-of-line
+#[[ -n "${key[End]}"     ]]  && bindkey  "${key[End]}"     end-of-line
+#[[ -n "${key[Insert]}"  ]]  && bindkey  "${key[Insert]}"  overwrite-mode
+#[[ -n "${key[Delete]}"  ]]  && bindkey  "${key[Delete]}"  delete-char
+#[[ -n "${key[Up]}"      ]]  && bindkey  "${key[Up]}"      up-line-or-history
+#[[ -n "${key[Down]}"    ]]  && bindkey  "${key[Down]}"    down-line-or-history
+#[[ -n "${key[Left]}"    ]]  && bindkey  "${key[Left]}"    backward-char
+#[[ -n "${key[Right]}"   ]]  && bindkey  "${key[Right]}"   forward-char
+#
+## Finally, make sure the terminal is in application mode, when zle is
+## active. Only then are the values from $terminfo valid.
+#function zle-line-init () {
+#  echoti smkx
+#}
+#function zle-line-finish () {
+#  echoti rmkx
+#}
+#zle -N zle-line-init
+#zle -N zle-line-finish
+####
+#### End of Solution 3
 
 #Alias
 ## Permet la coloration du retour d'un `ls`
