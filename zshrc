@@ -87,8 +87,8 @@ case $TERM in
     ;;
 
   xterm-termite|xterm-256color)
-    bindkey "^[OH" beginning-of-line #Home key
-    bindkey "^[OF" end-of-line #End key
+    bindkey "^[[H" beginning-of-line #Home key
+    bindkey "^[[F" end-of-line #End key
     bindkey "^[[3~" delete-char #Del key
     bindkey "^[[A" history-beginning-search-backward #Up Arrow
     bindkey "^[[B" history-beginning-search-forward #Down Arrow
