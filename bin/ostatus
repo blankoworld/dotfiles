@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+#
+# Script to send a status on GNUSocial instance using HTTPie
+#
+# Requirements: httpie package
+
+SERVER='https://herds.eu'
+API="${SERVER}/api"
+URL="${API}/statuses/update.xml"
+GS_USER='bl4n'
+
+message="$*"
+
+if http --check-status --timeout=5 -a $GS_USER -f POST $URL source='HTTPie' status="$message" &> /dev/null; then
+  echo 'OK!'
+else
+  case $? in
+    2) echo 'Request timed out!' && exit 1;;
+    3) echo 'Unexpected HTTP 3xx Redirection!' && exit 1 ;;
+    4) echo 'HTTP 4xx Client Error!' && exit 1;;
+    5) echo 'HTTP 5xx Server Error!' && exit 1;;
+    6) echo 'Exceeded --max-redirects=<n> redirects!' && exit 1 ;;
+    *) echo 'Other Error!' && exit 1;;
+  esac
+fi
+
+exit 0
+# Some information about method
+# EITHER HTTPIE
+#http -f POST $URL -a $GS_USER source='HTTPie' status="$message"
+# OR CURL
+#curl -u $GS_USER $URL -d status='curlTest'
