@@ -1,4 +1,4 @@
-export PATH=~/bin/:$PATH
+export PATH=~/bin:$PATH
 export PAGER=most
 export EDITOR=vim
 export BROWSER=elinks
