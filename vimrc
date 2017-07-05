@@ -2,11 +2,13 @@ set nocompatible
 syntax on
 filetype plugin indent on
 "":colorscheme peachpuff
-colors ron
+""colors ron
+set background=dark
+colors solarized
 set ai
 set nu
 set ts=2
-set et
+set et "" expand tab
 set softtabstop=2
 set shiftwidth=2
 set encoding=utf-8
