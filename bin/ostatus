@@ -9,6 +9,8 @@ API="${SERVER}/api"
 URL="${API}/statuses/update.xml"
 GS_USER='bl4n'
 
+command -v http >/dev/null 2>&1 || { echo >&2 "httpie is missing!"; exit 1;}
+
 message="$*"
 
 if http --check-status --timeout=5 -a $GS_USER -f POST $URL source='HTTPie' status="$message" &> /dev/null; then
