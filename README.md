@@ -42,6 +42,7 @@ Nécessite :
   * .vimrc
   * .xinitrc
   * .Xdefaults
+  * .Xresources (thème dark solarized pour X)
   * .gitconfig
   * .tmux.conf
   * .i3status.conf
