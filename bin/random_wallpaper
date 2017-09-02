@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+# random_wallpaper
+#
+# Requirement: feh (apt install feh)
+
+directory="$HOME/wallpapers"
+
+if [ -d '$directory' ]; then
+  echo "No $directory found."
+  exit 1
+fi
+
+array_files=($(ls $directory))
+
+nb_files=`ls $directory|wc -l`
+
+if [ $nb_files == 0 ]; then
+  echo "$nb_files files in $directoy"
+  exit 1
+fi
+
+NUMBER=$[ ( $RANDOM % $nb_files ) ]
+file=${array_files["$NUMBER"]}
+
+feh --bg-fill "$directory/$file"
