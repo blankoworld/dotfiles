@@ -5,6 +5,13 @@
 # Requirement: feh (apt install feh)
 
 directory="$HOME/wallpapers"
+minutes=15
+
+# Some tests
+if [ -z "`which feh`" ]; then
+  echo "This script needs the feh program. Install it."
+i  exit 1
+fi
 
 if [ -d '$directory' ]; then
   echo "No $directory found."
@@ -20,7 +27,20 @@ if [ $nb_files == 0 ]; then
   exit 1
 fi
 
-NUMBER=$[ ( $RANDOM % $nb_files ) ]
-file=${array_files["$NUMBER"]}
+# initialisation
+seconds=$[ $minutes * 60 ]
 
-feh --bg-fill "$directory/$file"
+while true; do
+
+  # Random number generator (not more than files number)
+  NUMBER=$[ ( $RANDOM % $nb_files ) ]
+
+  # Change background
+  file=${array_files["$NUMBER"]}
+  feh --bg-fill "$directory/$file"
+
+  # Wait some times
+  sleep $seconds
+done
+
+exit 0
