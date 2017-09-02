@@ -29,18 +29,26 @@ Sont nécessaires :
   * ttf-dejavu
   * termite
 
+## Cas d'i3
+
+Nécessite : 
+
+  * .profile pour rendre disponible $HOME/bin
+  * .xinitrc
+
 ## À Configurer (avec un script bash ou autre)
 
   * .zshrc
   * .vimrc
   * .xinitrc
-  * .Xdefault
+  * .Xdefaults
   * .gitconfig
   * .tmux.conf
   * .i3status.conf
   * dossier bin
   * [optionnel] environnement openbox
   * dossier .config
+  * .profile
 
 ## Liens utiles
 

@@ -39,6 +39,4 @@ fi
 #exec xterm -geometry 80x66+0+0 -name login
 #exec $1
 
-export TERMINAL=termite
-
 exec i3
