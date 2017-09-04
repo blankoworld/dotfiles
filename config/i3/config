@@ -201,6 +201,9 @@ exec --no-startup-id redshift -l 48.666977:7.706748
 # Lock screen
 exec_always --no-startup-id xscreensaver  # if not launched via systemd or xinitrc
 
+# XFCE panel instead of i3status
+#exec --no-startup-id xfce4-panel --disable-wm-check
+
 # Time tracking
 #exec --no-startup-id hamster-indicator
 

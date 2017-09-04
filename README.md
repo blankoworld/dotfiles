@@ -27,7 +27,7 @@ Sont nécessaires :
   * redshift
   * xscreensaver
   * ttf-dejavu
-  * termite
+  * termite (Cf. https://github.com/Corwind/termite-install/blob/master/termite-install.sh pour Ubuntu 16.04)
 
 ## Cas d'i3
 
@@ -52,7 +52,7 @@ Dépendances :
   * .zshrc
   * .vimrc
   * .xinitrc
-  * .Xdefaults
+  * .Xdefaults (nécessaire que pour urxvt)
   * .Xresources (thème dark solarized pour X)
   * .gitconfig
   * .tmux.conf

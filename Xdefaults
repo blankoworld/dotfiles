@@ -6,7 +6,7 @@ Xft.lcdfilter: lcddefault
 ! Urxvt --------------------------------------------------------------------
 
 urxvt*depth: 32
-urxvt*background: rgba:0000/0000/0200/e700
+urxvt*background: rgba:0000/0000/0200/8800
 URxvt*geometry: 95x30
 urxvt.foreground: #ffffff
 urxvt.font: xft:DejaVu Sans Mono:pixelsize=14:antialias=true
