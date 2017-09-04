@@ -55,6 +55,7 @@ Dépendances :
   * .Xdefaults (nécessaire que pour urxvt)
   * .Xresources (thème dark solarized pour X)
   * .gitconfig
+  * .gitignore_global
   * .tmux.conf
   * .i3status.conf
   * dossier bin

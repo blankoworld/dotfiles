@@ -1,9 +1,11 @@
 [user]
 	name = Olivier DOSSMANN
-	email = git@dossmann.net
+	email = olivier+git@dossmann.net
 [alias]
 	st = status
 [color]
 	ui = true
 [push]
 	default = matching
+[core]
+  excludesfile = /home/olivier/.gitignore_global
