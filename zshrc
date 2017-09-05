@@ -1,3 +1,7 @@
+if [ -d "$HOME/.local/bin" ] ; then
+  export PATH=$HOME/.local/bin:$PATH
+fi
+
 export PATH=~/bin:$PATH
 export PAGER=most
 export EDITOR=vim
@@ -8,6 +12,11 @@ export AUTEUR="Olivier DOSSMANN"
 # set variable identifying the chroot you work in (used in the prompt below)
 if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
 	debian_chroot=$(cat /etc/debian_chroot)
+fi
+
+# Autocomplètement supplémentaire (Docker)
+if [ -d "$HOME/.zsh/completion" ] ; then
+  fpath=(~/.zsh/completion $fpath)
 fi
 
 ### INITIAL ZSHRC ###
@@ -37,7 +46,7 @@ SAVEHIST=1000
 HISTFILE=~/.zsh_history
 
 # Use modern completion system
-autoload -Uz compinit
+autoload -Uz compinit && compinit -i
 compinit
 
 zstyle ':completion:*' auto-description 'specify: %d'
