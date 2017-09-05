@@ -3,8 +3,8 @@ syntax on
 filetype plugin indent on
 "":colorscheme peachpuff
 ""colors ron
-set background=dark
-colors solarized
+set background=dark "" for dark solarized
+colors default
 set ai
 set nu
 set ts=2
@@ -19,3 +19,8 @@ highlight ColorColumn ctermbg=7
 "" Plugin vim sur github:plasticboy/vim-markdown
 "" ne pas utiliser le folding pour le markdown
 let g:vim_markdown_folding_disabled=1
+
+"" Should be placed (highlight) after colorColumn highlight
+highlight Normal guibg=NONE ctermbg=NONE "" highlight
+highlight LineNr guibg=NONE ctermbg=NONE "" highlight for line numbers
+
