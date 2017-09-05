@@ -63,6 +63,7 @@ Dépendances :
   * [optionnel] environnement openbox
   * dossier .config
   * .profile
+  * .zsh
 
 ## Liens utiles
 
