@@ -28,6 +28,7 @@ Sont nécessaires :
   * xscreensaver
   * ttf-dejavu
   * termite (Cf. https://github.com/Corwind/termite-install/blob/master/termite-install.sh pour Ubuntu 16.04)
+  * powerline (pour VIM)
 
 ## Cas d'i3
 

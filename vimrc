@@ -24,3 +24,8 @@ let g:vim_markdown_folding_disabled=1
 highlight Normal guibg=NONE ctermbg=NONE "" highlight
 highlight LineNr guibg=NONE ctermbg=NONE "" highlight for line numbers
 
+"" Plugin powerline (apt install powerline) or pip install powerline-status
+python from powerline.vim import setup as powerline_setup
+python powerline_setup()
+python del powerline_setup
+set laststatus=2 "" Add powerline-status on VIM
