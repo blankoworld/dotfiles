@@ -5,8 +5,8 @@ filetype plugin indent on
 ""colors ron
 set background=dark "" for dark solarized
 colors default
-set ai
-set nu
+set ai "" autoindent
+set nu "" line number
 set ts=2
 set et "" expand tab
 set softtabstop=2
