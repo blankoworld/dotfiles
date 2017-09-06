@@ -29,6 +29,7 @@ Sont nécessaires :
   * ttf-dejavu
   * termite (Cf. https://github.com/Corwind/termite-install/blob/master/termite-install.sh pour Ubuntu 16.04)
   * powerline (pour VIM)
+  * gartoon-redux (https://www.gnome-look.org/content/show.php?content=74841) : icônes mode cartoon :)
 
 ## Cas d'i3
 
