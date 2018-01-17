@@ -45,7 +45,7 @@ Dépendances :
   * rofi (pour le menu de lancement)
   * compton (pour la transparence et les ombres des fenêtres)
   * polybar (à la place de la barre d'état)
-  * ttf-font-awesome (pour afficher des icônes dans la barre d'état)
+  * ttf-font-awesome-4 (pour afficher des icônes dans la barre d'état)
   * network-manager-applet (pour la configuration du son)
   * pavucontrol (gestion du son)
 
