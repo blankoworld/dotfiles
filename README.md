@@ -41,6 +41,7 @@ Nécessite :
 Dépendances : 
 
   * scrot
+  * feh
   * i3-gaps (à la place d'i3)
   * rofi (pour le menu de lancement)
   * compton (pour la transparence et les ombres des fenêtres)
