@@ -67,6 +67,12 @@ Dépendances :
   * .profile
   * .zsh
 
+Clavier FR avec la commande suivante : 
+
+```
+localectl --no-convert set-x11-keymap fr,fr pc104 oss,bepo grp:alt_shift_toggle
+```
+
 ## Liens utiles
 
   * https://dotfiles.github.io/
