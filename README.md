@@ -41,13 +41,15 @@ Nécessite :
 Dépendances : 
 
   * scrot
+  * feh
   * i3-gaps (à la place d'i3)
   * rofi (pour le menu de lancement)
   * compton (pour la transparence et les ombres des fenêtres)
   * polybar (à la place de la barre d'état)
   * ttf-font-awesome-4 (pour afficher des icônes dans la barre d'état)
-  * network-manager-applet (pour la configuration du son)
+  * (optionnel) network-manager-applet (pour la configuration wifi)
   * pavucontrol (gestion du son)
+  * wireless_tools pour l'affichage wifi dans polybar
 
 ## À Configurer (avec un script bash ou autre)
 
@@ -65,6 +67,12 @@ Dépendances :
   * dossier .config
   * .profile
   * .zsh
+
+Clavier FR avec la commande suivante : 
+
+```
+localectl --no-convert set-x11-keymap fr,fr pc104 oss,bepo grp:alt_shift_toggle
+```
 
 ## Liens utiles
 
