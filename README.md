@@ -47,8 +47,9 @@ Dépendances :
   * compton (pour la transparence et les ombres des fenêtres)
   * polybar (à la place de la barre d'état)
   * ttf-font-awesome-4 (pour afficher des icônes dans la barre d'état)
-  * network-manager-applet (pour la configuration du son)
+  * (optionnel) network-manager-applet (pour la configuration wifi)
   * pavucontrol (gestion du son)
+  * wireless_tools pour l'affichage wifi dans polybar
 
 ## À Configurer (avec un script bash ou autre)
 
