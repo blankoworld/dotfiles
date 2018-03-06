@@ -18,17 +18,20 @@ if [ -d '$directory' ]; then
   exit 1
 fi
 
-array_files=($(ls $directory))
+array_files=($(ls -1 $directory))
 
 nb_files=`ls $directory|wc -l`
 
 if [ $nb_files == 0 ]; then
-  echo "$nb_files files in $directoy"
+  echo "$nb_files files in $directory"
   exit 1
 fi
 
 # initialisation
 seconds=$[ $minutes * 60 ]
+
+IFS="
+"
 
 while true; do
 
@@ -36,7 +39,7 @@ while true; do
   NUMBER=$[ ( $RANDOM % $nb_files ) ]
 
   # Change background
-  file=${array_files["$NUMBER"]}
+  file="${array_files["$NUMBER"]}"
   feh --bg-fill "$directory/$file"
 
   # Wait some times
