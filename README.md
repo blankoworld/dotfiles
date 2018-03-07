@@ -40,6 +40,7 @@ Nécessite :
 
 Dépendances : 
 
+  * gksu (pour éteindre/redémarrer le système à partir de polybar)
   * scrot
   * feh
   * i3-gaps (à la place d'i3)
