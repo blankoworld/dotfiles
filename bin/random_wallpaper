@@ -18,6 +18,9 @@ if [ -d '$directory' ]; then
   exit 1
 fi
 
+IFS="
+"
+
 array_files=($(ls -1 $directory))
 
 nb_files=`ls $directory|wc -l`
@@ -29,9 +32,6 @@ fi
 
 # initialisation
 seconds=$[ $minutes * 60 ]
-
-IFS="
-"
 
 while true; do
 
