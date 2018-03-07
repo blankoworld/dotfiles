@@ -75,6 +75,10 @@ Clavier FR avec la commande suivante :
 localectl --no-convert set-x11-keymap fr,fr pc104 oss,bepo grp:alt_shift_toggle
 ```
 
+## Autologin
+
+Cf. https://wiki.archlinux.org/index.php/Getty#Automatic_login_to_virtual_console
+
 ## Liens utiles
 
   * https://dotfiles.github.io/
