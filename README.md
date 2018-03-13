@@ -27,7 +27,7 @@ Sont nécessaires :
   * redshift
   * xscreensaver
   * ttf-dejavu
-  * qterminal
+  * qterminal + ttf-fira-code (AUR) pour les fontes avec ligatures
   * [ABANDONNED] termite (Cf. https://github.com/Corwind/termite-install/blob/master/termite-install.sh pour Ubuntu 16.04)
   * vim-airline + powerline-fonts (pour VIM)
   * gartoon-redux (https://www.gnome-look.org/content/show.php?content=74841) : icônes mode cartoon :)
