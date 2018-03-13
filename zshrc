@@ -265,3 +265,8 @@ if [ ! $SSH_AGENT_PID ]; then
     ssh-procure-launch-agent;
   fi;
 fi;
+
+# Start X automatically
+if [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
+  exec startx
+fi
