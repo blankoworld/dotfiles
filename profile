@@ -6,7 +6,7 @@ if [ -d "$HOME/bin" ] ; then
 fi
 
 # Search a TERMINAL for i3
-for term in qterminal termite urxvt rxvt-unicode sakura gnome-terminal; do
+for term in kitty termite qterminal urxvt rxvt-unicode sakura gnome-terminal; do
   if [ -n `which $term` ]; then
     export TERMINAL=`which $term`
     break

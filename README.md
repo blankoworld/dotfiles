@@ -27,7 +27,7 @@ Sont nécessaires :
   * redshift
   * xscreensaver
   * ttf-dejavu
-  * qterminal + ttf-fira-code (AUR) pour les fontes avec ligatures
+  * kitty-git (AUR) + ttf-fira-code (AUR) pour les fontes avec ligatures
   * [ABANDONNED] termite (Cf. https://github.com/Corwind/termite-install/blob/master/termite-install.sh pour Ubuntu 16.04)
   * vim-airline + powerline-fonts (pour VIM)
   * gartoon-redux (https://www.gnome-look.org/content/show.php?content=74841) : icônes mode cartoon :)
@@ -85,3 +85,4 @@ Cf. https://wiki.archlinux.org/index.php/Getty#Automatic_login_to_virtual_consol
 
   * https://dotfiles.github.io/
   * https://github.com/svetlyak40wt/dotfiler
+  * https://gist.github.com/NeoTheFox/afd26413899d6e0431f88546027144a6 (config kitty)
