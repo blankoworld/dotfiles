@@ -69,6 +69,7 @@ Dépendances :
   * dossier .config
   * .profile
   * .zsh
+  * .zprofile
 
 Clavier FR avec la commande suivante : 
 
