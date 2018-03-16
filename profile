@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 # This file provide user specific environment used as fallback from several tools
 
 # set PATH so it includes user's private bin if it exists
@@ -7,7 +8,7 @@ fi
 
 # Search a TERMINAL for i3
 for term in kitty termite qterminal urxvt rxvt-unicode sakura gnome-terminal; do
-  if [ -n `which $term` ]; then
+  if [[ -n `which $term` ]]; then
     export TERMINAL=`which $term`
     break
   fi
