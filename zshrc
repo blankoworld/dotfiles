@@ -7,10 +7,12 @@ export PAGER=most
 export EDITOR=vim
 export BROWSER=elinks
 
+export SSH_ASKPASS=qt4-ssh-askpass
+
 export AUTEUR="Olivier DOSSMANN"
 
 export WORKON_HOME=~/.virtualenvs
-source /usr/share/virtualenvwrapper/virtualenvwrapper.sh
+source `locate virtualenvwrapper.sh`
 
 # set variable identifying the chroot you work in (used in the prompt below)
 if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
