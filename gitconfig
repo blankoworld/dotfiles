@@ -9,3 +9,4 @@
 	default = matching
 [core]
   excludesfile = /home/olivier/.gitignore_global
+	quotePath = false
