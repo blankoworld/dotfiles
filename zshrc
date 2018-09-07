@@ -78,15 +78,6 @@ zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
 #### Solution 2
 ####
-# Not all servers have terminfo for rxvt-256color.
-if [ "${TERM}" = 'rxvt-256color' ] && ! [ -f '/usr/share/terminfo/r/rxvt-256color' ] && ! [ -f '/lib/terminfo/r/rxvt-256color' ] && ! [ -f "${HOME}/.terminfo/r/rxvt-256color" ]; then
-  export TERM='rxvt-unicode'
-fi
-
-if [ "${TERM}" = 'xterm-termite' ] && ! [ -f '/usr/share/terminfo/x/xterm-termite' ] && ! [ -f '/lib/terminfo/r/xterm-termite' ] && ! [ -f "${HOME}/.terminfo/r/xterm-termite" ]; then
-  export TERM='xterm-256color'
-fi
-
 case $TERM in
   rxvt*|xterm)
     bindkey "^[[7~" beginning-of-line #Home key
