@@ -182,12 +182,11 @@ esac
 
 #Alias
 ## Permet la coloration du retour d'un `ls`
-export LS_OPTIONS='--color=auto'
 export GREP_COLORS='ms=01;33:mc=01;33:s1=:cx=:fn=37;ln=32:bn=32:se=36'
-alias ls='ls $LS_OPTIONS'
-alias ll='ls $LS_OPTIONS -l'
-alias l='ls $LS_OPTIONS -CF'
-alias rgrep='grep -r -n --color'
+alias ls='exa'
+alias ll='exa -l'
+alias l='exa -F'
+alias rgrep='rg'
 alias grep='grep --color'
 
 ## évite de faire des erreurs

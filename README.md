@@ -16,21 +16,23 @@ D'autres viendront au fur et à mesure.
 
 Sont nécessaires : 
 
-  * zsh
-  * vim
-  * htop
-  * most
-  * tmux
   * elinks
-  * openbox OU i3wm
-  * git-core
-  * redshift
-  * xscreensaver
-  * ttf-dejavu
-  * kitty-git (AUR) + ttf-fira-code (AUR) pour les fontes avec ligatures
-  * [ABANDONNED] termite (Cf. https://github.com/Corwind/termite-install/blob/master/termite-install.sh pour Ubuntu 16.04)
-  * vim-airline + powerline-fonts (pour VIM)
+  * exa
   * gartoon-redux (https://www.gnome-look.org/content/show.php?content=74841) : icônes mode cartoon :)
+  * git-core
+  * htop
+  * kitty-git (AUR) + ttf-fira-code (AUR) pour les fontes avec ligatures
+  * most
+  * openbox OU i3wm
+  * redshift
+  * ripgrep
+  * tmux
+  * trizen
+  * ttf-dejavu
+  * vim
+  * vim-airline + powerline-fonts (pour VIM)
+  * xscreensaver
+  * zsh
 
 ## Cas d'i3
 
@@ -55,21 +57,21 @@ Dépendances :
 
 ## À Configurer (avec un script bash ou autre)
 
-  * .zshrc
-  * .vimrc
-  * .xinitrc
   * .Xdefaults (nécessaire que pour urxvt)
   * .Xresources (thème dark solarized pour X)
   * .gitconfig
   * .gitignore_global
-  * .tmux.conf
   * .i3status.conf
-  * dossier bin
+  * .profile
+  * .tmux.conf
+  * .vimrc
+  * .xinitrc
+  * .zprofile
+  * .zsh
+  * .zshrc
   * [optionnel] environnement openbox
   * dossier .config
-  * .profile
-  * .zsh
-  * .zprofile
+  * dossier bin
 
 Clavier FR avec la commande suivante : 
 
