@@ -36,9 +36,12 @@ precmd_vcs_info() { vcs_info }
 precmd_functions+=( precmd_vcs_info )
 setopt prompt_subst
 
+# Git info: display current branch
+zstyle ':vcs_info:git*' formats "%F{magenta}  %b %f%k"
+
 typeset PROMPT="%F{white}%n %B%F{magenta}%(4~|...|)%3~%F{white} %# %b%f%k"
 # Ajoute le nom du chroot sur la droite
-typeset RPROMPT="\$vcs_info_msg_0_ ${debian_chroot:+($debian_chroot) } %m" #%(1j.%j:.)%n@%m"
+typeset RPROMPT="\$vcs_info_msg_0_ ${debian_chroot:+($debian_chroot) } %B%F{cyan}%m%f%k"
 
 setopt histignorealldups sharehistory
 
