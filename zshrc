@@ -26,22 +26,30 @@ fi
 
 ### INITIAL ZSHRC ###
 
-# Set up the prompt
+# Set up the prompt (prefered theme: adam1)
 autoload -Uz compinit promptinit vcs_info
 compinit # for Git completion
 promptinit
-#prompt adam1
-
 precmd_vcs_info() { vcs_info }
 precmd_functions+=( precmd_vcs_info )
 setopt prompt_subst
-
 # Git info: display current branch
 zstyle ':vcs_info:git*' formats "%F{magenta}  %b %f%k"
 # Un symbole pour l'utilisateur. ROUGE si root.
 typeset PROMPT="%B%(!.%F{red}.%F{yellow}) %# %b%f%k"
-# Ajoute le nom du chroot sur la droite
-typeset RPROMPT="\$vcs_info_msg_0_ ${debian_chroot:+($debian_chroot) } %B%F{cyan}%m%f%k"
+# VCS (chroot) hostname
+case $HOST in
+  lueur)
+    hcolor=red
+    ;;
+  baloo)
+    hcolor=magenta
+    ;;
+  *)
+    hcolor=cyan
+    ;;
+esac
+typeset RPROMPT="\$vcs_info_msg_0_ ${debian_chroot:+($debian_chroot) } %B%F{$hcolor}%m%f%k"
 
 setopt histignorealldups sharehistory
 
