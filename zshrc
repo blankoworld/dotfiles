@@ -34,9 +34,10 @@ precmd_vcs_info() { vcs_info }
 precmd_functions+=( precmd_vcs_info )
 setopt prompt_subst
 # Git info: display current branch
-zstyle ':vcs_info:git*' formats "%F{magenta}  %b %f%k"
+zstyle ':vcs_info:git*' formats "%F{magenta}  %b%f%k"
+# Affichage des 2 derniers membres de l'adresse du répertoire courant
 # Un symbole pour l'utilisateur. ROUGE si root.
-typeset PROMPT="%B%(!.%F{red}.%F{yellow}) %# %b%f%k"
+typeset PROMPT="%B%(!.%F{red}.%F{yellow})%#%b%f%k "
 # VCS (chroot) hostname
 case $HOST in
   lueur)
@@ -49,7 +50,7 @@ case $HOST in
     hcolor=cyan
     ;;
 esac
-typeset RPROMPT="\$vcs_info_msg_0_ ${debian_chroot:+($debian_chroot) } %B%F{$hcolor}%m%f%k"
+typeset RPROMPT="%B%F{white}%(5~|…/%2~|%~)\$vcs_info_msg_0_ ${debian_chroot:+($debian_chroot)}%B%F{$hcolor}%m%f%k"
 
 setopt histignorealldups sharehistory
 
