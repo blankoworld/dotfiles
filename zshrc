@@ -4,7 +4,7 @@ fi
 
 export PATH=~/bin:$PATH
 export PAGER=most
-export EDITOR=vim
+export EDITOR=nvim
 export BROWSER=elinks
 
 export SSH_ASKPASS=qt4-ssh-askpass
@@ -152,7 +152,7 @@ alias grep='grep --color'
 alias rm='rm -i'
 alias cp='cp -i'
 
-alias vi='vim'
+alias vi="${EDITOR}"
 alias mem='free -mt'
 alias df='df -hT'
 
