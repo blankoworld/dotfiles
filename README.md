@@ -54,6 +54,8 @@ Dépendances :
   * (optionnel) network-manager-applet (pour la configuration wifi)
   * pavucontrol (gestion du son)
   * wireless_tools pour l'affichage wifi dans polybar
+  * clipit (presse-papier du bureau)
+  * hamster-time-tracker (enregistrement des durées de travail)
 
 ## À Configurer (avec un script bash ou autre)
 

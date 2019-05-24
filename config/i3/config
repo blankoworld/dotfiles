@@ -232,3 +232,9 @@ exec_always --no-startup-id "kill -9 `ps aux | grep random_wallpaper |grep -v 'g
 
 # Network management
 exec --no-startup-id nm-applet
+
+# Hasmter indicator
+exec --no-startup-id hamster
+
+# Clipit : Presse-papiers pour le bureau
+exec --no-startup-id clipit
