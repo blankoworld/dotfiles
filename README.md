@@ -22,6 +22,7 @@ Sont nécessaires :
   * git-core
   * htop
   * kitty-git (AUR) + ttf-fira-code (AUR) pour les fontes avec ligatures
+  * mlocate
   * most
   * openbox OU i3wm
   * redshift
