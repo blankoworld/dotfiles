@@ -30,7 +30,7 @@ Sont nécessaires :
   * tmux
   * trizen
   * ttf-dejavu
-  * vim + nvim
+  * vim + neovim
   * vim-airline + powerline-fonts (pour VIM)
   * xscreensaver
   * zsh
