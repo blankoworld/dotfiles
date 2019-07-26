@@ -29,7 +29,7 @@ Sont nécessaires :
   * tmux
   * trizen
   * ttf-dejavu
-  * vim
+  * vim + nvim
   * vim-airline + powerline-fonts (pour VIM)
   * xscreensaver
   * zsh
