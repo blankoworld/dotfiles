@@ -163,7 +163,8 @@ bindsym $mod+r mode "resize"
 ##### Application that goes to a specific Workspace
 
 assign [class="jetbrains-idea|Code"] 1
-assign [class="Google-chrome|Vivaldi-stable|Opera|Firefox|Chromium"] 2
+assign [class="Google-chrome|Vivaldi-stable|Opera|Firefox|Navigator|Nightly|Chromium"] 2
+assign [class="Mattermost|mattermost-desktop|Rambox|Slack|Scudcloud"] 4
 
 ##### STATUS BAR
 
