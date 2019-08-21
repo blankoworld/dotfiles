@@ -43,7 +43,7 @@ case $HOST in
   lueur)
     hcolor=red
     ;;
-  baloo)
+  baloo | sam)
     hcolor=magenta
     ;;
   *)
