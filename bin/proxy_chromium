@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+chromium --proxy-server="socks4://localhost:9005"

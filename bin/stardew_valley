@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+
+IFS="
+"
+
+dir="/home/od/GOG Games/Stardew Valley/"
+
+cd $dir && TERM=xterm ./start.sh
