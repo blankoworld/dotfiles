@@ -57,6 +57,7 @@ Dépendances :
   * wireless_tools pour l'affichage wifi dans polybar
   * clipit (presse-papier du bureau)
   * hamster-time-tracker (enregistrement des durées de travail)
+  * httpie
 
 ## À Configurer (avec un script bash ou autre)
 

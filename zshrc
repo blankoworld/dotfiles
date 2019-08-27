@@ -134,9 +134,13 @@ alias grep='grep --color'
 alias rm='rm -i'
 alias cp='cp -i'
 
+## Divers
 alias vi="${EDITOR}"
 alias mem='free -mt'
 alias df='df -hT'
+
+## Requêtes
+alias https='http --verify=no --default-scheme=https'
 
 ### PROPRES à ZSH
 
@@ -206,3 +210,4 @@ fi;
 if [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
   exec startx
 fi
+source /usr/share/nvm/init-nvm.sh
