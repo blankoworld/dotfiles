@@ -165,7 +165,7 @@ bindsym $mod+r mode "resize"
 assign [class="jetbrains-idea|Code"] 1
 assign [class="Google-chrome|Vivaldi-stable|Opera|Firefox|Navigator|Nightly|Chromium"] 2
 assign [class="Thunderbird|Mail"] 3
-assign [class="Mattermost|mattermost-desktop|Rambox|Slack|Scudcloud"] 4
+assign [class="Mattermost|mattermost-desktop|Rambox|Slack|Scudcloud|Gitter"] 4
 
 ##### STATUS BAR
 
