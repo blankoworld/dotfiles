@@ -201,7 +201,7 @@ bindsym Print exec --no-startup-id scrot '%Y-%m-%d-%s_screenshot_$wx$h.jpg' -e '
 ###
 
 # Transparency (need compton)
-exec --no-startup-id compton
+exec_always --no-startup-id "killall compton; compton"
 
 # DBUS daemon (needed for keyboard applet and more I think)
 #exec --no-startup-id /usr/lib/gnome-settings-daemon/gnome-settings-daemon
