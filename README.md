@@ -21,7 +21,7 @@ Sont nécessaires :
   * gartoon-redux (https://www.gnome-look.org/content/show.php?content=74841) : icônes mode cartoon :)
   * git-core
   * htop
-  * kitty-git (AUR) + ttf-fira-code (AUR) pour les fontes avec ligatures
+  * kitty + ttf-fira-code (AUR) pour les fontes avec ligatures
   * mlocate
   * most
   * openbox OU i3wm
