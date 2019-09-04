@@ -33,8 +33,19 @@ promptinit
 precmd_vcs_info() { vcs_info }
 precmd_functions+=( precmd_vcs_info )
 setopt prompt_subst
-# Git info: display current branch
+# Git info: display current remote name and current branch
 zstyle ':vcs_info:git*' formats "%F{magenta}  %b%f%k"
+zstyle ':vcs_info:git*+set-message:*' hooks git-remotebranch
+
+# Cf. https://stackoverflow.com/a/11868440
+# and https://github.com/zsh-users/zsh/blob/master/Misc/vcs_info-examples#L195
+function +vi-git-remotebranch() {
+    local remote=$(git config --get branch.`git rev-parse --abbrev-ref --symbolic-full-name @`.remote)
+    if [[ -n ${remote} ]] ; then
+        hook_com[branch]="%F{blue}${remote}%f:%F{magenta}${hook_com[branch]}"
+    fi
+  }
+
 # Affichage des 2 derniers membres de l'adresse du répertoire courant
 # Un symbole pour l'utilisateur. ROUGE si root.
 typeset PROMPT="%B%(!.%F{red}.%F{yellow})%#%b%f%k "
