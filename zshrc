@@ -153,6 +153,10 @@ alias df='df -hT'
 ## Requêtes
 alias https='http --verify=no --default-scheme=https'
 
+## Pytest
+alias pyt='pipenv run pytest -vvs --no-cov --disable-warnings'
+alias pytc='pipenv run pytest -vvs --disable-warnings --cov-report=xml:cov.xml'
+
 ### PROPRES à ZSH
 
 ## Global aliases (expand whatever their position)
