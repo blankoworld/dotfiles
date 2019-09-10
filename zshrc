@@ -1,8 +1,4 @@
-if [ -d "$HOME/.local/bin" ] ; then
-  export PATH=$HOME/.local/bin:$PATH
-fi
-
-export PATH=~/bin:$PATH
+# Paramètres persos
 export PAGER=most
 export EDITOR=nvim
 export BROWSER=elinks
@@ -33,6 +29,7 @@ promptinit
 precmd_vcs_info() { vcs_info }
 precmd_functions+=( precmd_vcs_info )
 setopt prompt_subst
+
 # Git info: display current remote name and current branch
 zstyle ':vcs_info:git*' formats "%F{magenta}  %b%f%k"
 zstyle ':vcs_info:git*+set-message:*' hooks git-remotebranch
@@ -64,6 +61,9 @@ esac
 typeset RPROMPT="%B%F{white}%(5~|…/%2~|%~)\$vcs_info_msg_0_ ${debian_chroot:+($debian_chroot)}%B%F{$hcolor}%m%f%k"
 
 setopt histignorealldups sharehistory
+
+# Remove RPS1 after <enter>
+setopt transient_rprompt
 
 # Use emacs keybindings even if our EDITOR is set to vi
 bindkey -e

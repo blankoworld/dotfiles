@@ -73,10 +73,12 @@ Dépendances :
   * .xinitrc
   * .zprofile
   * .zsh
+  * .zshenv
   * .zshrc
   * [optionnel] environnement openbox
   * dossier .config
   * dossier bin
+  * dossier zsh
 
 Clavier FR avec la commande suivante : 
 
