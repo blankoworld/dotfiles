@@ -487,13 +487,13 @@ fi
   esac
   typeset -g POWERLEVEL9K_CONTEXT_FOREGROUND=$host_color
   # Default context format: %n is username, %m is hostname.
-  typeset -g POWERLEVEL9K_CONTEXT_TEMPLATE='%m'
+  typeset -g POWERLEVEL9K_CONTEXT_TEMPLATE='%B%m%b'
   typeset -g POWERLEVEL9K_ALWAYS_SHOW_CONTEXT=true
 
   # Context color when running with privileges.
   typeset -g POWERLEVEL9K_CONTEXT_ROOT_FOREGROUND=$host_color
   # Context format when running with privileges: %n is username, %m is hostname.
-  typeset -g POWERLEVEL9K_CONTEXT_ROOT_TEMPLATE='%F{red}%n%F{$POWERLEVEL9K_CONTEXT_FOREGROUND}@%m'
+  typeset -g POWERLEVEL9K_CONTEXT_ROOT_TEMPLATE='%F{red}%n%F{$POWERLEVEL9K_CONTEXT_FOREGROUND}@%B%m%b'
 
   # Don't show context unless running with privileges or in SSH.
 #  typeset -g POWERLEVEL9K_CONTEXT_{DEFAULT,SUDO}_{CONTENT,VISUAL_IDENTIFIER}_EXPANSION=
