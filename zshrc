@@ -1,203 +1,139 @@
-# Paramètres persos
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
+
+# Path to your oh-my-zsh installation.
+export ZSH="${HOME}/.oh-my-zsh"
+
+# Set name of the theme to load --- if set to "random", it will
+# load a random theme each time oh-my-zsh is loaded, in which case,
+# to know which specific one was loaded, run: echo $RANDOM_THEME
+# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
+ZSH_THEME="powerlevel10k/powerlevel10k"
+
+# Set list of themes to pick from when loading at random
+# Setting this variable when ZSH_THEME=random will cause zsh to load
+# a theme from this variable instead of looking in ~/.oh-my-zsh/themes/
+# If set to an empty array, this variable will have no effect.
+# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
+
+# Uncomment the following line to use case-sensitive completion.
+# CASE_SENSITIVE="true"
+
+# Uncomment the following line to use hyphen-insensitive completion.
+# Case-sensitive completion must be off. _ and - will be interchangeable.
+# HYPHEN_INSENSITIVE="true"
+
+# Uncomment the following line to disable bi-weekly auto-update checks.
+# DISABLE_AUTO_UPDATE="true"
+
+# Uncomment the following line to automatically update without prompting.
+# DISABLE_UPDATE_PROMPT="true"
+
+# Uncomment the following line to change how often to auto-update (in days).
+# export UPDATE_ZSH_DAYS=13
+
+# Uncomment the following line if pasting URLs and other text is messed up.
+# DISABLE_MAGIC_FUNCTIONS=true
+
+# Uncomment the following line to disable colors in ls.
+# DISABLE_LS_COLORS="true"
+
+# Uncomment the following line to disable auto-setting terminal title.
+# DISABLE_AUTO_TITLE="true"
+
+# Uncomment the following line to enable command auto-correction.
+# ENABLE_CORRECTION="true"
+
+# Uncomment the following line to display red dots whilst waiting for completion.
+# COMPLETION_WAITING_DOTS="true"
+
+# Uncomment the following line if you want to disable marking untracked files
+# under VCS as dirty. This makes repository status check for large repositories
+# much, much faster.
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+# Uncomment the following line if you want to change the command execution time
+# stamp shown in the history command output.
+# You can set one of the optional three formats:
+# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# or set a custom format using the strftime function format specifications,
+# see 'man strftime' for details.
+# HIST_STAMPS="mm/dd/yyyy"
+
+# Would you like to use another custom folder than $ZSH/custom?
+# ZSH_CUSTOM=/path/to/new-custom-folder
+
+# Which plugins would you like to load?
+# Standard plugins can be found in ~/.oh-my-zsh/plugins/*
+# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+plugins=(git httpie pass pip pyenv sudo virtualenvwrapper wd)
+
+source $ZSH/oh-my-zsh.sh
+
+# powerlevel10k configuration
+POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
+POWERLEVEL9K_SHORTEN_DELIMITER=""
+POWERLEVEL9K_SHORTEN_STRATEGY="truncate_from_right"
+
+# User configuration
 export PAGER=most
-export EDITOR=nvim
 export BROWSER=elinks
-
 export SSH_ASKPASS=qt4-ssh-askpass
-
 export AUTEUR="Olivier DOSSMANN"
-
+export DEFAULT_USER="od"
 export WORKON_HOME=~/.virtualenvs
 source /usr/bin/virtualenvwrapper.sh
 
-# set variable identifying the chroot you work in (used in the prompt below)
-if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
-	debian_chroot=$(cat /etc/debian_chroot)
+# You may need to manually set your language environment
+export LANG=fr_FR.UTF-8
+
+# Preferred editor for local and remote sessions
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='vim'
+else
+  export EDITOR='nvim'
 fi
 
-# Autocomplètement supplémentaire (Docker)
-if [ -d "$HOME/.zsh/completion" ] ; then
-  fpath=(~/.zsh/completion $fpath)
-fi
-
-### INITIAL ZSHRC ###
-
-# Set up the prompt (prefered theme: adam1)
-autoload -Uz compinit promptinit vcs_info
-compinit # for Git completion
-promptinit
-precmd_vcs_info() { vcs_info }
-precmd_functions+=( precmd_vcs_info )
-setopt prompt_subst
-
-# Git info: display current remote name and current branch
-zstyle ':vcs_info:git*' formats "%F{magenta}  %b%f%k"
-zstyle ':vcs_info:git*+set-message:*' hooks git-remotebranch
-
-# Cf. https://stackoverflow.com/a/11868440
-# and https://github.com/zsh-users/zsh/blob/master/Misc/vcs_info-examples#L195
-function +vi-git-remotebranch() {
-    local remote=$(git config --get branch.`git rev-parse --abbrev-ref --symbolic-full-name @`.remote)
-    if [[ -n ${remote} ]] ; then
-        hook_com[branch]="%F{blue}${remote}%f:%F{magenta}${hook_com[branch]}"
-    fi
-  }
-
-# Affichage des 2 derniers membres de l'adresse du répertoire courant
-# Un symbole pour l'utilisateur. ROUGE si root.
-typeset PROMPT="%B%(!.%F{red}.%F{yellow})%#%b%f%k "
-# VCS (chroot) hostname
-case $HOST in
-  lueur)
-    hcolor=red
-    ;;
-  baloo | sam)
-    hcolor=magenta
-    ;;
-  *)
-    hcolor=cyan
-    ;;
-esac
-typeset RPROMPT="%B%F{white}%(5~|…/%2~|%~)\$vcs_info_msg_0_ ${debian_chroot:+($debian_chroot)}%B%F{$hcolor}%m%f%k"
-
-setopt histignorealldups sharehistory
-
-# Remove RPS1 after <enter>
+# Enlève le prompt de droite après avoir appuyé sur Entrée
 setopt transient_rprompt
 
-# Use emacs keybindings even if our EDITOR is set to vi
-bindkey -e
+# Compilation flags
+# export ARCHFLAGS="-arch x86_64"
 
-# Keep 1000 lines of history within the shell and save it to ~/.zsh_history:
-HISTSIZE=1000
-SAVEHIST=1000
-HISTFILE=~/.zsh_history
-
-# Use modern completion system
-autoload -Uz compinit && compinit -i
-compinit
-
-zstyle ':completion:*' auto-description 'specify: %d'
-zstyle ':completion:*' completer _expand _complete _correct _approximate
-zstyle ':completion:*' format 'Completing %d'
-zstyle ':completion:*' group-name ''
-zstyle ':completion:*' menu select=2
-eval "$(dircolors -b)"
-zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
-zstyle ':completion:*' list-colors ''
-zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
-zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=* l:|=*'
-zstyle ':completion:*' menu select=long
-zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
-zstyle ':completion:*' use-compctl false
-zstyle ':completion:*' verbose true
-
-zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
-zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
-
-###### END OF INITIAL ZSHRC
-
-# Correspondance touches-fonction (ZSH powered)
-typeset -A key
-
-key[Home]=${terminfo[khome]}
-key[End]=${terminfo[kend]}
-key[Insert]=${terminfo[kich1]}
-key[Delete]=${terminfo[kdch1]}
-key[Up]=${terminfo[kcuu1]}
-key[Down]=${terminfo[kcud1]}
-key[Left]=${terminfo[kcub1]}
-key[Right]=${terminfo[kcuf1]}
-key[PageUp]=${terminfo[kpp]}
-key[PageDown]=${terminfo[knp]}
-
-# setup key accordingly
-[[ -n "${key[Home]}"    ]]  && bindkey  "${key[Home]}"    beginning-of-line
-[[ -n "${key[End]}"     ]]  && bindkey  "${key[End]}"     end-of-line
-[[ -n "${key[Insert]}"  ]]  && bindkey  "${key[Insert]}"  overwrite-mode
-[[ -n "${key[Delete]}"  ]]  && bindkey  "${key[Delete]}"  delete-char
-[[ -n "${key[Up]}"      ]]  && bindkey  "${key[Up]}"      up-line-or-history
-[[ -n "${key[Down]}"    ]]  && bindkey  "${key[Down]}"    down-line-or-history
-[[ -n "${key[Left]}"    ]]  && bindkey  "${key[Left]}"    backward-char
-[[ -n "${key[Right]}"   ]]  && bindkey  "${key[Right]}"   forward-char
-
-# Finally, make sure the terminal is in application mode, when zle is
-# active. Only then are the values from $terminfo valid.
-function zle-line-init () {
-  echoti smkx
-}
-function zle-line-finish () {
-  echoti rmkx
-}
-zle -N zle-line-init
-zle -N zle-line-finish
-
-# Alias
-## Permet la coloration du retour d'un `ls`
-export GREP_COLORS='ms=01;33:mc=01;33:s1=:cx=:fn=37;ln=32:bn=32:se=36'
+# Set personal aliases, overriding those provided by oh-my-zsh libs,
+# plugins, and themes. Aliases can be placed here, though oh-my-zsh
+# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# For a full list of active aliases, run `alias`.
+#
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
+alias vi="${EDITOR}"
+alias mem='free -mt'
+alias df='df -hT'
 alias ls='exa'
 alias ll='exa -l'
 alias l='exa -F'
 alias rgrep='rg'
-alias grep='grep --color'
-
-## évite de faire des erreurs
+export GREP_COLORS='ms=01;33:mc=01;33:s1=:cx=:fn=37;ln=32:bn=32:se=36'
+alias diff='colordiff'
+# évite de faire des erreurs
 alias rm='rm -i'
 alias cp='cp -i'
-
-## Divers
-alias vi="${EDITOR}"
-alias mem='free -mt'
-alias df='df -hT'
-
-## Requêtes
+alias grep='grep --color'
+# requêtes
 alias https='http --verify=no --default-scheme=https'
-
-## Pytest
+# pytest
 alias pyt='pipenv run pytest -vvs --no-cov --disable-warnings'
 alias pytc='pipenv run pytest -vvs --disable-warnings --cov-report=xml:cov.xml'
 
-### PROPRES à ZSH
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
 
-## Global aliases (expand whatever their position)
-## e.g find . E L
-alias -g L='| less'
-alias -g H='| head'
-alias -g S='| sort'
-alias -g T='| tail'
-alias -g N='> /dev/null'
-alias -g E='2> /dev/null'
-
-## Set up auto extension stuff
-alias -s html=$BROWSER
-alias -s png=feh
-alias -s jpg=feh
-alias -s gif=feh
-alias -s txt=$EDITOR
-alias -s md=$EDITOR
-#alias -s org=$BROWSER
-#alias -s php=$BROWSER
-#alias -s com=$BROWSER
-#alias -s net=$BROWSER
-alias -s sxw=libreoffice
-alias -s doc=libreoffice
-alias -s odt=libreoffice
-alias -s gz=tar -xzvf
-alias -s bz2=tar -xjvf
-alias -s xz=tar -xvfJ
-#alias -s java=$EDITOR
-alias -s txt=$EDITOR
-alias -s PKGBUILD=$EDITOR
-
-### END PROPRES à ZSH
-
-# ssh-agent-procure.bash
-# # v0.6.4
-# # ensures that all shells sourcing this file in profile/rc scripts use the same ssh-agent.
-# # copyright me, now; licensed under the DWTFYWT license.
-#
-mkdir -p "$HOME/etc/ssh";
-
+# Connexion automatique
+mkdir -p "${HOME}/etc/ssh";
 function ssh-procure-launch-agent {
   eval `ssh-agent -s -a ~/etc/ssh/ssh-agent-socket`;
   ssh-add;
@@ -225,4 +161,13 @@ fi;
 if [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
   exec startx
 fi
-source /usr/share/nvm/init-nvm.sh
+
+# Launch nvm possibilities (for javascript environment)
+case $HOST in
+  lueur | baloo | sam)
+    :
+    ;;
+  *)
+    source /usr/share/nvm/init-nvm.sh
+    ;;
+esac

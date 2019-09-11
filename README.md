@@ -16,6 +16,7 @@ D'autres viendront au fur et à mesure.
 
 Sont nécessaires : 
 
+  * colordiff
   * elinks
   * exa
   * gartoon-redux (https://www.gnome-look.org/content/show.php?content=74841) : icônes mode cartoon :)
@@ -33,7 +34,16 @@ Sont nécessaires :
   * vim + neovim
   * vim-airline + powerline-fonts (pour VIM)
   * xscreensaver
-  * zsh
+  * zsh + oh-my-zsh (Cf. https://github.com/robbyrussell/oh-my-zsh) + powerlevel10k (Cf. https://github.com/romkatv/powerlevel10k#oh-my-zsh)
+
+## Cas de ZSH
+
+```bash
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
+cp dotfiles/zshrc ~/.zshrc
+cp dotfiles/p10k.zsh ~/.p10k.zsh
+```
 
 ## Cas d'i3
 
@@ -75,6 +85,7 @@ Dépendances :
   * .zsh
   * .zshenv
   * .zshrc
+  * .p10k.zsh
   * [optionnel] environnement openbox
   * dossier .config
   * dossier bin
