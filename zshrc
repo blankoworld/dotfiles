@@ -116,7 +116,7 @@ alias df='df -hT'
 alias ls='exa'
 alias ll='exa -l'
 alias l='exa -F'
-alias rgrep='rg'
+alias rgrep='rg --no-ignore'
 export GREP_COLORS='ms=01;33:mc=01;33:s1=:cx=:fn=37;ln=32:bn=32:se=36'
 alias diff='colordiff'
 # évite de faire des erreurs
