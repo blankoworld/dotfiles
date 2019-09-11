@@ -1,4 +1,5 @@
-  * ajouter configuration Atom editor
+  * ajouter configuration vscode
   * Ajouter Fira Code (Cf. https://github.com/tonsky/FiraCode)
   * Ajouter script d'installation des ttf Fira Code dans ~/.local/share/fonts + fc-cache -f
-  * Configurer Atom pour utiliser Fira Code
+  * configurer vscode pour utiliser FiraCode
+  * faire un test TRAVIS avec un archlinux (ou debian/ubuntu) et copier la configuration + lancer un shell pour savoir si ça plante
