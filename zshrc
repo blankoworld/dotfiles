@@ -110,6 +110,7 @@ setopt transient_rprompt
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias e="${EDITOR}"
 alias vi="${EDITOR}"
 alias mem='free -mt'
 alias df='df -hT'
