@@ -296,11 +296,16 @@ fi
 
   #####################################[ vcs: git status ]######################################
   # Branch icon. Set this parameter to '\uF126 ' for the popular Powerline branch icon.
-  typeset -g POWERLEVEL9K_VCS_BRANCH_ICON=
+  typeset -g POWERLEVEL9K_VCS_BRANCH_ICON=$'\uF126 '
 
   # Untracked files icon. It's really a question mark, your font isn't broken.
   # Change the value of this parameter to show a different icon.
   typeset -g POWERLEVEL9K_VCS_UNTRACKED_ICON='?'
+
+  # Réduit à 25 la limite du nombre de caractère pour la branche
+  typeset -g POWERLEVEL9K_VCS_SHORTEN_LENGTH=12
+  typeset -g POWERLEVEL9K_VCS_SHORTEN_STRATEGY='truncate_from_right'
+  typeset -g POWERLEVEL9K_VCS_SHORTEN_MIN_LENGTH=20
 
   # Git status: feature:master#tag ⇣42⇡42 *42 merge ~42 +42 !42 ?42.
   #
@@ -310,60 +315,56 @@ fi
   # https://github.com/romkatv/gitstatus/blob/master/gitstatus.plugin.zsh.
   local vcs=''
   # If on a branch...
-  vcs+='${${VCS_STATUS_LOCAL_BRANCH:+%76F'${(g::)POWERLEVEL9K_VCS_BRANCH_ICON}
-  # Ajout du nom de la branche distante
-  vcs+='${VCS_STATUS_REMOTE_NAME}:'
-  # If local branch name is at most 25 characters long, show it in full.
-  # This is the equivalent of POWERLEVEL9K_VCS_SHORTEN_MIN_LENGTH=25.
-  vcs+='${${${$(($#VCS_STATUS_LOCAL_BRANCH<=25)):#0}:+${VCS_STATUS_LOCAL_BRANCH//\%/%%}}'
-  # If local branch name is over 25 characters long, show the first 12 … the last 12. The same as
+  vcs+='${${VCS_STATUS_LOCAL_BRANCH:+%${POWERLEVEL9K_VCS_VISUAL_IDENTIFIER_COLOR}F'${(g::)POWERLEVEL9K_VCS_BRANCH_ICON}'%${POWERLEVEL9K_VCS_CLEAN_FOREGROUND}F'
+  # Ajoute le nom du remote si différent de "origin" - Changer 75 par une autre couleur si besoin
+  vcs+='${${VCS_STATUS_REMOTE_NAME:#origin}:+%75F${VCS_STATUS_REMOTE_NAME//\%/%%}/}%${POWERLEVEL9K_VCS_CLEAN_FOREGROUND}F'
+  # If local branch name is at most 32 characters long, show it in full.
+  # This is the equivalent of POWERLEVEL9K_VCS_SHORTEN_MIN_LENGTH=32.
+  vcs+='${${${$(($#VCS_STATUS_LOCAL_BRANCH<=$(($POWERLEVEL9K_VCS_SHORTEN_MIN_LENGTH)))):#0}:+${VCS_STATUS_LOCAL_BRANCH//\%/%%}}'
+  # If local branch name is over 32 characters long, show the first 12 … the last 12. The same as
   # POWERLEVEL9K_VCS_SHORTEN_LENGTH=12 with POWERLEVEL9K_VCS_SHORTEN_STRATEGY=truncate_middle.
-  vcs+=':-${VCS_STATUS_LOCAL_BRANCH[1,12]//\%/%%}%28F…%76F${VCS_STATUS_LOCAL_BRANCH[-12,-1]//\%/%%}}}'
+  vcs+=':-${VCS_STATUS_LOCAL_BRANCH[1,$(($POWERLEVEL9K_VCS_SHORTEN_LENGTH))]//\%/%%}%28F…%${POWERLEVEL9K_VCS_CLEAN_FOREGROUND}F${VCS_STATUS_LOCAL_BRANCH[-$(($POWERLEVEL9K_VCS_SHORTEN_LENGTH)),-1]//\%/%%}}}'
   # '@72f5c8a' if not on a branch.
-  vcs+=':-%f@%76F${VCS_STATUS_COMMIT[1,8]}}'
+    vcs+=':-%f@%76F${VCS_STATUS_COMMIT[1,8]}}'
   # ':master' if the tracking branch name differs from local branch.
-  vcs+='${${VCS_STATUS_REMOTE_BRANCH:#$VCS_STATUS_LOCAL_BRANCH}:+%f:%76F${VCS_STATUS_REMOTE_BRANCH//\%/%%}}'
+#  vcs+='${${VCS_STATUS_REMOTE_BRANCH:#$VCS_STATUS_LOCAL_BRANCH}:+%f:%76F${VCS_STATUS_REMOTE_BRANCH//\%/%%}}'
   # '#tag' if on a tag.
-  vcs+='${VCS_STATUS_TAG:+%f#%76F${VCS_STATUS_TAG//\%/%%}}'
+  vcs+='${VCS_STATUS_TAG:+%f %221F ${VCS_STATUS_TAG//\%/%%}}'
   # ⇣42 if behind the remote.
   vcs+='${${VCS_STATUS_COMMITS_BEHIND:#0}:+ %76F⇣${VCS_STATUS_COMMITS_BEHIND}}'
   # ⇡42 if ahead of the remote; no leading space if also behind the remote: ⇣42⇡42.
   # If you want '⇣42 ⇡42' instead, replace '${${(M)VCS_STATUS_COMMITS_BEHIND:#0}:+ }' with ' '.
   vcs+='${${VCS_STATUS_COMMITS_AHEAD:#0}:+${${(M)VCS_STATUS_COMMITS_BEHIND:#0}:+ }%76F⇡${VCS_STATUS_COMMITS_AHEAD}}'
   # *42 if have stashes.
-  vcs+='${${VCS_STATUS_STASHES:#0}:+ %76F*${VCS_STATUS_STASHES}}'
+  vcs+='${${VCS_STATUS_STASHES:#0}:+ %042F ${VCS_STATUS_STASHES}}'
   # 'merge' if the repo is in an unusual state.
-  vcs+='${VCS_STATUS_ACTION:+ %196F${VCS_STATUS_ACTION//\%/%%}}'
+  vcs+='${VCS_STATUS_ACTION:+ %${POWERLEVEL9K_PROMPT_CHAR_ERROR_VICMD_FOREGROUND}F${VCS_STATUS_ACTION//\%/%%}}'
   # ~42 if have merge conflicts.
-  vcs+='${${VCS_STATUS_NUM_CONFLICTED:#0}:+ %196F~${VCS_STATUS_NUM_CONFLICTED}}'
+  vcs+='${${VCS_STATUS_NUM_CONFLICTED:#0}:+ %${POWERLEVEL9K_PROMPT_CHAR_ERROR_VICMD_FOREGROUND}F~${VCS_STATUS_NUM_CONFLICTED}}'
   # +42 if have staged changes.
-  vcs+='${${VCS_STATUS_NUM_STAGED:#0}:+ %178F+${VCS_STATUS_NUM_STAGED}}'
+  vcs+='${${VCS_STATUS_NUM_STAGED:#0}:+ %${POWERLEVEL9K_VCS_MODIFIED_FOREGROUND}F ${VCS_STATUS_NUM_STAGED}}'
   # !42 if have unstaged changes.
-  vcs+='${${VCS_STATUS_NUM_UNSTAGED:#0}:+ %178F!${VCS_STATUS_NUM_UNSTAGED}}'
+  vcs+='${${VCS_STATUS_NUM_UNSTAGED:#0}:+ %${POWERLEVEL9K_VCS_MODIFIED_FOREGROUND}F!${VCS_STATUS_NUM_UNSTAGED}}'
   # ?42 if have untracked files. It's really a question mark, your font isn't broken.
   # See POWERLEVEL9K_VCS_UNTRACKED_ICON above if you want to use a different icon.
   # Remove the next line if you don't want to see untracked files at all.
-  vcs+='${${VCS_STATUS_NUM_UNTRACKED:#0}:+ %39F'${(g::)POWERLEVEL9K_VCS_UNTRACKED_ICON}'${VCS_STATUS_NUM_UNTRACKED}}'
+  vcs+='${${VCS_STATUS_NUM_UNTRACKED:#0}:+ %${POWERLEVEL9K_VCS_UNTRACKED_FOREGROUND}F'${(g::)POWERLEVEL9K_VCS_UNTRACKED_ICON}'${VCS_STATUS_NUM_UNTRACKED}}'
   # If P9K_CONTENT is not empty, leave it unchanged. It's either "loading" or from vcs_info.
   vcs="\${P9K_CONTENT:-$vcs}"
 
   # Disable the default Git status formatting.
-  typeset -g POWERLEVEL9K_VCS_DISABLE_GITSTATUS_FORMATTING=false
+  typeset -g POWERLEVEL9K_VCS_DISABLE_GITSTATUS_FORMATTING=true
   # Install our own Git status formatter.
   typeset -g POWERLEVEL9K_VCS_{CLEAN,UNTRACKED,MODIFIED}_CONTENT_EXPANSION=$vcs
   # When Git status is being refreshed asynchronously, display the last known repo status in grey.
   typeset -g POWERLEVEL9K_VCS_LOADING_CONTENT_EXPANSION=${${${vcs//\%f}//\%<->F}//\%F\{(\#|)[[:xdigit:]]#(\\|)\}}
   # Enable counters for staged, unstaged, etc.
   typeset -g POWERLEVEL9K_VCS_{STAGED,UNSTAGED,UNTRACKED,CONFLICTED,COMMITS_AHEAD,COMMITS_BEHIND}_MAX_NUM=-1
-  # Réduit à 25 la limite du nombre de caractère pour la branche
-  typeset -g POWERLEVEL9K_VCS_SHORTEN_LENGTH=25
-  typeset -g POWERLEVEL9K_VCS_SHORTEN_STRATEGY='truncate_from_right'
-  typeset -g POWERLEVEL9K_VCS_SHORTEN_MIN_LENGTH=20
 
   # Icon color.
   typeset -g POWERLEVEL9K_VCS_VISUAL_IDENTIFIER_COLOR=039
   # Custom icon.
-  typeset -g POWERLEVEL9K_VCS_VISUAL_IDENTIFIER_EXPANSION=$'\uF126'
+  typeset -g POWERLEVEL9K_VCS_VISUAL_IDENTIFIER_EXPANSION=
   # Custom prefix.
   # typeset -g POWERLEVEL9K_VCS_PREFIX='%fon '
 
@@ -372,11 +373,11 @@ fi
   # isn't in an svn or hg reposotiry.
   typeset -g POWERLEVEL9K_VCS_BACKENDS=(git)
 
-  typeset -g POWERLEVEL9K_VCS_LOADING_FOREGROUND=75
+  typeset -g POWERLEVEL9K_VCS_LOADING_FOREGROUND=244
   # These settings are used for respositories other than Git or when gitstatusd fails and
   # Powerlevel10k has to fall back to using vcs_info.
   typeset -g POWERLEVEL9K_VCS_CLEAN_FOREGROUND=141
-  typeset -g POWERLEVEL9K_VCS_UNTRACKED_FOREGROUND=141
+  typeset -g POWERLEVEL9K_VCS_UNTRACKED_FOREGROUND=203
   typeset -g POWERLEVEL9K_VCS_MODIFIED_FOREGROUND=204
 
   ##########################[ status: exit code of the last command ]###########################
