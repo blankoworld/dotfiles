@@ -8,5 +8,5 @@
 [push]
 	default = matching
 [core]
-  excludesfile = /home/olivier/.gitignore_global
+  excludesfile = /home/od/.gitignore_global
 	quotePath = false
