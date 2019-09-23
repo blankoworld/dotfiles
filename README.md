@@ -76,6 +76,7 @@ Dépendances :
   * .Xresources (thème dark solarized pour X)
   * .gitconfig
   * .gitignore_global
+  * .gitmessage.txt
   * .i3status.conf
   * .profile
   * .tmux.conf
@@ -100,6 +101,12 @@ localectl --no-convert set-x11-keymap fr,fr pc104 oss,bepo grp:alt_shift_toggle
 ## Autologin
 
 Cf. https://wiki.archlinux.org/index.php/Getty#Automatic_login_to_virtual_console
+
+## Configuration de Git
+
+```bash
+git config --global commit.template ~/.gitmessage.txt 
+```
 
 ## Selfie de la caméra avec mpv
 
