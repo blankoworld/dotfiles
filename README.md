@@ -17,6 +17,7 @@ D'autres viendront au fur et à mesure.
 Sont nécessaires : 
 
   * colordiff
+  * dunst
   * elinks
   * exa
   * gartoon-redux (https://www.gnome-look.org/content/show.php?content=74841) : icônes mode cartoon :)
@@ -69,6 +70,7 @@ Dépendances :
   * hamster-time-tracker (enregistrement des durées de travail)
   * httpie
   * nvm (pour zshrc qui demande cet outil)
+  * dunst (pour notification bureau)
 
 ## À Configurer (avec un script bash ou autre)
 

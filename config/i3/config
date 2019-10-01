@@ -243,3 +243,6 @@ exec --no-startup-id hamster
 
 # Clipit : Presse-papiers pour le bureau
 exec --no-startup-id clipit
+
+# Notification de bureau
+exec --no-startup-id dunst
