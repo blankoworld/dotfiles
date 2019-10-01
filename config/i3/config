@@ -196,6 +196,9 @@ bindsym $mod+l exec xscreensaver-command --lock
 # Print screen
 bindsym Print exec --no-startup-id scrot '%Y-%m-%d-%s_screenshot_$wx$h.jpg' -e 'mv $f ~/Images/'
 
+# Suspend activity (bouton de veille)
+bindsym XF86Sleep exec systemctl suspend
+
 #####
 ## STARTUP PROGRAMS
 ###
