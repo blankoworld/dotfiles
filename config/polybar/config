@@ -202,18 +202,18 @@ card = intel_backlight
 [module/cpu]
 type = internal/cpu
 interval = 2
-format-prefix = " "
+format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
 format-underline = #f90000
-label =  %percentage%%
+label = %percentage%%
 
 [module/memory]
 type = internal/memory
 interval = 2
-format-prefix = " "
+format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
 format-underline = #4bffdc
-label =  %percentage_used%%
+label = %percentage_used%%
 
 [module/wlan]
 type = internal/network
@@ -264,11 +264,11 @@ date-alt = " %Y-%m-%d"
 time = %R
 time-alt = %R:%S
 
-format-prefix = 
+format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
 format-underline = #0a6cf5
 
-label =  %date% %time%
+label = %date% %time%
 
 [module/volume]
 type = internal/volume
@@ -335,13 +335,17 @@ type = internal/temperature
 thermal-zone = 0
 warn-temperature = 60
 
-format = <ramp> <label>
+hwmon-path = /sys/devices/platform/coretemp.0/hwmon/hwmon2/temp1_input
+
+;format = <ramp> <label>
+format = <label>
 format-underline = #f50a4d
-format-warn = <ramp> <label-warn>
+;format-warn = <ramp> <label-warn>
+format-warn = <label-warn>
 format-warn-underline = ${self.format-underline}
 
 label =  %temperature%
-label-warn = %temperature%
+label-warn =  %temperature%
 label-warn-foreground = ${colors.secondary}
 
 ramp-0 = 
